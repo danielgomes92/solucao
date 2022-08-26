@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel.Client;
+using Newtonsoft.Json.Linq;
 
 namespace Client
 {
@@ -32,10 +33,27 @@ namespace Client
                     });
             if (tokenResponse.IsError)
             {
-                Console.WriteLine(tokenResponse.Error);
+                Console.WriteLine(tokenResponse.Error); //cabeçalho chamado authorization
                 return;
             }
             Console.WriteLine(tokenResponse.Json);
+
+            //novo cliente http para chamar a API
+            var apiClient = new HttpClient();
+
+            apiClient.SetBearerToken(tokenResponse.AccessToken);
+
+            var response = await apiClient.GetAsync("https://localhost:5000/identity");
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(JArray.Parse(content));
+            }
+
             Console.ReadKey();
         }
     }
