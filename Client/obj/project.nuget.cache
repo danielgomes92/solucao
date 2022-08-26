@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "8QX2PD6bYPFrSzUzL2eYG7G+YEn++7UoHtX2sSmfBsXGrtJ78ROj8Ujt/R9j5cYPqzR00s8Bi8aenZsfOZVZRQ==",
+  "dgSpecHash": "+ffa1J6gVj8X/SEWdOKvykaAzxUFeKki2lfjsjufzs3/VYnl2HqO2GuBGp4kxjc9aN/bCmbtfxs+JEfkusoSNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mobil\\Desktop\\solucao\\Client\\Client.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\mobil\\.nuget\\packages\\identitymodel\\3.10.10\\identitymodel.3.10.10.nupkg.sha512",
+    "C:\\Users\\mobil\\.nuget\\packages\\newtonsoft.json\\11.0.1\\newtonsoft.json.11.0.1.nupkg.sha512",
+    "C:\\Users\\mobil\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
