@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Api
 {
@@ -26,6 +27,18 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddAuthentication("Bearer") // nome do esquema ao portador que estamos utilizando.
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://localhost:5001";
+                    options.TokenValidationParameters
+                    = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+                });
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +53,8 @@ namespace Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication(); //acionada para que a autenticão seja executada automaticamente
+            app.UseAuthorization();  // garante que não possa ser acessado por anonimos
 
             app.UseEndpoints(endpoints =>
             {
